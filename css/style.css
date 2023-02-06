@@ -1,0 +1,84 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  background-color: black;
+  overflow: hidden;
+  cursor: none;
+}
+
+.crosshair {
+  pointer-events: none; /* zorgt ervoor dat je op de enemy kan klikken ipv crosshair*/
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  margin-left: -30px;
+  margin-top: -30px;
+  left: 50vw;
+  top: 50vh;
+  background-image: url("../images/crosshair.png");
+}
+
+.crosshair:active {
+  animation-name: shoot;
+  animation-duration: 150ms;
+  animation-iteration-count: 1;
+  /* animation-direction: normal;
+    animation-timing-function: linear; */
+  /* animation-delay: 0; */
+}
+
+@keyframes shoot {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.crosshair::after {
+  content: "";
+  position: absolute;
+  bottom: -100vh;
+  left: calc(50% - 0.5px);
+  width: 1px;
+  background-image: repeating-linear-gradient(
+    180deg,
+    rgba(0, 255, 0, 1) 0vh 2vh,
+    black 2vh 4vh
+  );
+  height: 200vh;
+}
+.crosshair::before {
+  content: "";
+  position: absolute;
+  left: -100vw;
+  top: calc(50% - 0.5px);
+  width: 200vw;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(0, 255, 0, 1) 0vh 2vh,
+    black 2vh 4vh
+  );
+  height: 1px;
+}
+
+.enemy {
+  position: absolute;
+
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: red;
+  opacity: 0.5;
+}
+
+.shot-wound {
+  background-image: url("../images/gunshotwound.png");
+}
